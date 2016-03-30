@@ -1,0 +1,26 @@
+{
+  "name": "st-mssql-proc",
+  "version": "1.0.0",
+  "description": "helper class that simplifies calling stored procedures",
+  "main": "MSSQLProc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastianteres/st-mssql-proc.git"
+  },
+  "keywords": [
+    "mssql"
+  ],
+  "author": "Sebastian Perez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebastianteres/st-mssql-proc/issues"
+  },
+  "homepage": "https://github.com/sebastianteres/st-mssql-proc#readme",
+  "dependencies": {
+    "mssql": "^3.1.2",
+    "st-promise": "^1.0.0"
+  }
+}
