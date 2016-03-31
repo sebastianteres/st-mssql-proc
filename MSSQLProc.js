@@ -19,7 +19,7 @@ class MSSQLProc {
                         rq.verbose = true;
                         delete parametersObject.verbose;
                     }
-                    MSSQL.addParameterToRequest(rq, parametersObject);
+                    MSSQLProc.addParameterToRequest(rq, parametersObject);
                 }
                 rq.execute(proc);
 
@@ -41,7 +41,7 @@ class MSSQLProc {
         Object.keys(parameters).forEach(k => {
             let value = parameters[k];
             if (typeof value === 'object' && value !== null) {
-                value = MSSQL.buildTable(value);
+                value = MSSQLProc.buildTable(value);
             }
             rq.input(k, value);
         });
