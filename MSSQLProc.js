@@ -2,11 +2,15 @@
 let sql = require('mssql'),
     StPromise = require('st-promise');
 
+function isFloat(n){
+    return Number(n) === n && n % 1 !== 0;
+}
+
 class MSSQLProc {
     constructor(settings) {
         this.settings = settings;
     }
-    call(proc, parametersObject) {
+    call(proc, parametersObject, verbose) {
         let self = this;
         return new StPromise((resolve, reject) => {
             let connection = new sql.Connection(self.settings, function(err){
@@ -21,6 +25,7 @@ class MSSQLProc {
                     }
                     MSSQLProc.addParameterToRequest(rq, parametersObject);
                 }
+                rq.verbose = verbose;
                 rq.execute(proc);
 
                 let results = [];
@@ -43,7 +48,12 @@ class MSSQLProc {
             if (typeof value === 'object' && value !== null) {
                 value = MSSQLProc.buildTable(value);
             }
-            rq.input(k, value);
+            if (isFloat(value)) {
+                //send decimals as Varchar because mssql transform them into int
+                rq.input(k, sql.VarChar, value);
+            } else {
+                rq.input(k, value);
+            }
         });
     }
     static buildTable(obj) {

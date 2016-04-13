@@ -1,6 +1,6 @@
 {
   "name": "st-mssql-proc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "helper class that simplifies calling stored procedures",
   "main": "MSSQLProc.js",
   "scripts": {
